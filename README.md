@@ -1,4 +1,4 @@
-# React Native app for Digital Femsa
+# React Native app for Kin and Carta
 
 Contact List Demo app
 
