@@ -1,14 +1,18 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SectionList, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {StyleSheet} from 'react-native';
 
 import useFetchURL from '../hooks/useFetchURL';
 
-import {url} from '../utils/assets/constants';
+import {
+  url,
+  FAVORITES_CONTACTS,
+  NON_FAVORITES_CONTACTS,
+} from '../utils/assets/constants';
 
-export default function ContactsList() {
+export default function ContactsList({navigation}) {
   const {data, loading} = useFetchURL(url);
   const [contacts, setContacts] = useState([]);
   const [contactsMutable, setContactsMutable] = useState([]);
@@ -20,6 +24,40 @@ export default function ContactsList() {
     }
   }, [data]);
 
+  const favoritesContacts = contactsMutable
+    .filter(item => item.isFavorite)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const nonFavoritesContacts = contactsMutable
+    .filter(item => !item.isFavorite)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const ContactListData = [
+    {
+      title: FAVORITES_CONTACTS,
+      data: favoritesContacts,
+    },
+    {
+      title: NON_FAVORITES_CONTACTS,
+      data: nonFavoritesContacts,
+    },
+  ];
+
+  const renderItem = ({item}) => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('ContactDetail', {item})}>
+      <View key={item.id}>
+        <Text>{item.name}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  const renderSectionHeader = ({section: {title}}) => (
+    <View>
+      <Text>{title}</Text>
+    </View>
+  );
+
   if (loading) {
     return (
       <SafeAreaView style={styles.loaderContainer}>
@@ -30,23 +68,12 @@ export default function ContactsList() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.sectionTop}>{/* <Header /> */}</View>
-      <View style={styles.sectionTop2}>
-        {/* <TotalPointsCard totalPoints={totalPoints} /> */}
-      </View>
-      <View style={styles.sectionMiddle}>
-        <Text style={styles.textMovimientos}>
-          {console.log('🚀 ~ ContactsList ~ contacts:', contacts)}
-        </Text>
-        {/* <MovementsContainer products={products} navigation={navigation} /> */}
-      </View>
-      <View style={styles.sectionBottom}>
-        {/* <Footer
-          filterTrue={filteredMovements}
-          filterFalse={filteredMovementsFalse}
-          notFiltered={showMovements}
-        /> */}
-      </View>
+      <SectionList
+        sections={ContactListData}
+        keyExtractor={(item, index) => item + index}
+        renderItem={renderItem}
+        renderSectionHeader={renderSectionHeader}
+      />
     </SafeAreaView>
   );
 }
