@@ -1,9 +1,11 @@
-const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
-module.exports = {
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+export default {
   root: true,
   extends: '@react-native',
   eslintPluginPrettierRecommended,
 };
+
+
 
 
 
