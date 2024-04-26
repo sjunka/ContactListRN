@@ -1,8 +1,13 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {View, Text, SectionList, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  SectionList,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {StyleSheet} from 'react-native';
 
 import useFetchURL from '../hooks/useFetchURL';
 
@@ -11,6 +16,8 @@ import {
   FAVORITES_CONTACTS,
   NON_FAVORITES_CONTACTS,
 } from '../utils/assets/constants';
+
+import Header from '../components/UI/Header';
 
 export default function ContactsList({navigation}) {
   const {data, loading} = useFetchURL(url);
@@ -68,6 +75,7 @@ export default function ContactsList({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* <Header /> */}
       <SectionList
         sections={ContactListData}
         keyExtractor={(item, index) => item + index}
@@ -86,37 +94,10 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#F8F8F8',
   },
-  text: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    fontFamily: 'Avenir',
-  },
+
   container: {
     flex: 1,
     flexDirection: 'column',
     height: '100%',
-    backgroundColor: '#F8F8F8',
-  },
-  sectionTop: {
-    flexBasis: '10%',
-    paddingHorizontal: 20,
-  },
-  sectionTop2: {
-    flexBasis: '25%',
-    paddingHorizontal: 20,
-  },
-  sectionMiddle: {
-    flexBasis: '55%',
-    paddingHorizontal: 20,
-  },
-  sectionBottom: {
-    flexBasis: '16%',
-  },
-  textMovimientos: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#9B9898',
-    marginTop: 20,
-    fontFamily: 'Avenir',
   },
 });
