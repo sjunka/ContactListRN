@@ -1,11 +1,17 @@
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-export default {
+module.exports = {
   root: true,
   extends: '@react-native',
-  eslintPluginPrettierRecommended,
+  parser: 'babel-eslint',
+  env: {
+    browser: true,
+    node: true,
+    es6: true
+  },
+  rules: {
+    'react/prop-types': 0
+  },
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
 };
-
-
 
 
 

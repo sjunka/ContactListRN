@@ -12,7 +12,14 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="ContactsList" component={ContactsList} />
+        <Stack.Screen
+          name="Contacts"
+          component={ContactsList}
+          options={{
+            title: 'Contacts',
+            headerTitleAlign: 'center',
+          }}
+        />
         <Stack.Screen name="ContactDetail" component={ContactDetail} />
       </Stack.Navigator>
     </NavigationContainer>
