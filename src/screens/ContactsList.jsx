@@ -1,23 +1,25 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   View,
   Text,
   SectionList,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
+import SectionListHeader from '../components/SectionListHeader';
 import useFetchURL from '../hooks/useFetchURL';
+
+import SectionListItem from '../components/SectionListItem';
 
 import {
   url,
   FAVORITES_CONTACTS,
   NON_FAVORITES_CONTACTS,
 } from '../utils/assets/constants';
-
-import Header from '../components/UI/Header';
 
 export default function ContactsList({navigation}) {
   const {data, loading} = useFetchURL(url);
@@ -49,20 +51,12 @@ export default function ContactsList({navigation}) {
       data: nonFavoritesContacts,
     },
   ];
-
   const renderItem = ({item}) => (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('ContactDetail', {item})}>
-      <View key={item.id}>
-        <Text>{item.name}</Text>
-      </View>
-    </TouchableOpacity>
+    <SectionListItem item={item} navigation={navigation} />
   );
 
   const renderSectionHeader = ({section: {title}}) => (
-    <View>
-      <Text>{title}</Text>
-    </View>
+    <SectionListHeader title={title} />
   );
 
   if (loading) {
@@ -75,7 +69,6 @@ export default function ContactsList({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Header /> */}
       <SectionList
         sections={ContactListData}
         keyExtractor={(item, index) => item + index}
@@ -94,10 +87,13 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#F8F8F8',
   },
-
   container: {
     flex: 1,
     flexDirection: 'column',
     height: '100%',
+  },
+
+  emoji: {
+    fontSize: 24,
   },
 });

@@ -15,7 +15,6 @@ const App = () => {
         <Stack.Screen
           name="Contacts"
           component={ContactsList}
-          // options={{headerShown: false}}
           options={{
             title: 'Contacts',
             headerTitleAlign: 'center',
@@ -30,7 +29,6 @@ const App = () => {
         />
         <Stack.Screen
           name="ContactDetail"
-          // options={{headerShown: false}}
           options={{
             title: 'Contacts',
             headerTitleAlign: 'left',
