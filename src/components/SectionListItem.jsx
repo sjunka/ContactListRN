@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   horizontalLine: {
     borderBottomWidth: 1,
-    borderBottomColor: 'ligthgray',
+    borderBottomColor: '#E5E4E2',
     marginHorizontal: 20,
   },
   text: {
