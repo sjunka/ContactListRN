@@ -1,19 +1,13 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {
-  View,
-  Text,
-  SectionList,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from 'react-native';
+import {Text, SectionList, StyleSheet} from 'react-native';
 
 import SectionListHeader from '../components/SectionListHeader';
+import SectionListItem from '../components/SectionListItem';
 import useFetchURL from '../hooks/useFetchURL';
 
-import SectionListItem from '../components/SectionListItem';
+import {FavoritesContext} from '../context/favoritesContext';
 
 import {
   url,
@@ -23,15 +17,21 @@ import {
 
 export default function ContactsList({navigation}) {
   const {data, loading} = useFetchURL(url);
+  const {favorites, setFavorites} = useContext(FavoritesContext);
   const [contacts, setContacts] = useState([]);
   const [contactsMutable, setContactsMutable] = useState([]);
 
   useEffect(() => {
     if (data) {
-      setContacts(data);
-      setContactsMutable(data);
+      setFavorites(data);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (favorites) {
+      setContactsMutable(favorites);
+    }
+  }, [favorites]);
 
   const favoritesContacts = contactsMutable
     .filter(item => item.isFavorite)
