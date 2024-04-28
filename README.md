@@ -4,7 +4,7 @@ Contact List Demo app
 
 ## Description
 
-RN app with routing, prop drilling, and state management using Context API
+RN app with routing, prop drilling, state management using Context API, Image fallback, custom hooks, scalable icons and folder structure.
 
 ## Getting Started
 
@@ -42,3 +42,7 @@ Linkedin [@sjunka](https://www.linkedin.com/in/sjunka/)
 ## License
 
 This project is licensed under the [MIT] License - see the LICENSE.md file for details
+
+## Video
+
+## Images
