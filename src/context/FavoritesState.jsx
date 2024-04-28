@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {FavoritesContext} from './favoritesContext';
 
 export default function FavoritesState({children}) {

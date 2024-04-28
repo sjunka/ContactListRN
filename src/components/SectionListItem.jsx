@@ -21,7 +21,7 @@ const SectionListItem = ({item, navigation}) => {
         <View style={styles.imageContainer}>
           <RemoteImageWithFallback
             source={{uri: item.smallImageURL}}
-            fallbackSource={require('../utils/images/UserSmall/User-Icon-Small.png')} // Path to your local image
+            fallbackSource={require('../utils/images/UserSmall/User-Icon-Small.png')}
             style={styles.image}
           />
         </View>

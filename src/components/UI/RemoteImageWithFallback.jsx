@@ -25,9 +25,9 @@ const RemoteImageWithFallback = ({source, fallbackSource, style}) => {
 
 const styles = StyleSheet.create({
   image: {
-    width: 70, // Set your preferred width
-    height: 70, // Set your preferred height
-    resizeMode: 'cover', // Adjust as per your requirement
+    width: 70,
+    height: 70,
+    resizeMode: 'cover',
   },
 });
 
