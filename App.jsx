@@ -8,6 +8,7 @@ import ContactDetail from './src/screens/ContactDetail';
 import FavoritesState from './src/context/FavoritesState';
 
 import HeaderRigth from './src/components/UI/HeaderRigth';
+import {Colors} from './src/utils/assets/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,9 +24,9 @@ const App = () => {
               title: 'Contacts',
               headerTitleAlign: 'center',
               headerStyle: {
-                backgroundColor: '#F6FBF3',
+                backgroundColor: Colors.White.color,
               },
-              headerTintColor: 'black',
+              headerTintColor: Colors.Black.color,
               headerTitleStyle: {
                 fontWeight: 'bold',
               },
@@ -37,9 +38,9 @@ const App = () => {
               title: 'Contacts',
               headerTitleAlign: 'left',
               headerStyle: {
-                backgroundColor: '#F6FBF3',
+                backgroundColor: Colors.White.color,
               },
-              headerTintColor: '#6798B9',
+              headerTintColor: Colors.Blue.color,
               headerTitleStyle: {
                 fontWeight: 'bold',
               },

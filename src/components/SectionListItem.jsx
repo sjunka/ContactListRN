@@ -2,6 +2,17 @@ import React from 'react';
 import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import RemoteImageWithFallback from './UI/RemoteImageWithFallback';
 
+const starIcon = require('../utils/images/FavoriteStar(True)/FavoriteTrue.png');
+
+const FavoriteStar = () => {
+  return (
+    <Image
+      source={starIcon}
+      style={{width: 20, height: 20, marginBottom: 20, marginRight: 10}}
+    />
+  );
+};
+
 const SectionListItem = ({item, navigation}) => {
   return (
     <TouchableOpacity
@@ -18,11 +29,7 @@ const SectionListItem = ({item, navigation}) => {
           <View style={[styles.column, styles.iconColumn]}>
             <View style={styles.row} />
             <View style={styles.row}>
-              {item.isFavorite ? (
-                <Text style={styles.icon}>⭐</Text>
-              ) : (
-                <Text style={styles.icon}></Text>
-              )}
+              {item.isFavorite ? <FavoriteStar /> : null}
             </View>
             <View style={styles.row} />
           </View>
