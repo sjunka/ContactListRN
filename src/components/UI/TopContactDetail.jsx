@@ -1,10 +1,17 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
+import RemoteImageWithFallback from './RemoteImageWithFallback';
+
+import altImage from '../../utils/images/UserLarge/UserLarge.png';
 
 export default function TopContactDetail({largeImageURL, name, companyName}) {
   return (
     <View>
-      <Image source={{uri: largeImageURL}} style={styles.image} />
+      <RemoteImageWithFallback
+        source={{uri: largeImageURL}}
+        fallbackSource={altImage}
+        style={styles.image}
+      />
       <View style={styles.textWrapper}>
         <Text style={styles.text}>{name}</Text>
         {companyName ? (

@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import RemoteImageWithFallback from './UI/RemoteImageWithFallback';
 
 const SectionListItem = ({item, navigation}) => {
   return (
@@ -7,10 +8,10 @@ const SectionListItem = ({item, navigation}) => {
       onPress={() => navigation.navigate('ContactDetail', {item})}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image
-            source={require('../utils/images/UserSmall/User-Icon-Small.png')}
+          <RemoteImageWithFallback
+            source={{uri: item.smallImageURL}}
+            fallbackSource={require('../utils/images/UserSmall/User-Icon-Small.png')} // Path to your local image
             style={styles.image}
-            resizeMode="cover"
           />
         </View>
         <View style={styles.infoContainer}>
