@@ -4,16 +4,16 @@ import {FavoritesContext} from './favoritesContext';
 export default function FavoritesState({children}) {
   const [favorites, setFavorites] = useState([]);
 
-  console.log('FavoritesState', favorites);
-
   const toggleFavorite = id => {
-    console.log('toggleFavorite', id);
-
-    // setData(prevData =>
-    //   prevData.map(item =>
-    //     item.id === id ? {...item, isFavorite: !item.isFavorite} : item,
-    //   ),
-    // );
+    setFavorites(prevData => {
+      return prevData.map(item => {
+        if (item.id === id) {
+          return {...item, isFavorite: !item.isFavorite};
+        } else {
+          return item;
+        }
+      });
+    });
   };
 
   return (

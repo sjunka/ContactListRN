@@ -3,12 +3,13 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {FavoritesContext} from '../../context/favoritesContext';
 
-export default HeaderRightComponent = ({id}) => {
+export default HeaderRightComponent = ({id, isFavorite}) => {
   const {toggleFavorite} = useContext(FavoritesContext);
 
   return (
     <TouchableOpacity onPress={() => toggleFavorite(id)}>
-      <Text style={styles.emoji}>⭐</Text>
+      <Text style={styles.emoji}>{isFavorite ? '⭐' : '✩'}</Text>
+      {/* <Text style={styles.emoji}>⭐</Text> */}
     </TouchableOpacity>
   );
 };

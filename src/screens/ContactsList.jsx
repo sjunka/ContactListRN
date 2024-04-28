@@ -18,7 +18,6 @@ import {
 export default function ContactsList({navigation}) {
   const {data, loading} = useFetchURL(url);
   const {favorites, setFavorites} = useContext(FavoritesContext);
-  const [contacts, setContacts] = useState([]);
   const [contactsMutable, setContactsMutable] = useState([]);
 
   useEffect(() => {
