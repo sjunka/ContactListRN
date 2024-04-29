@@ -1,4 +1,4 @@
-import {useContext, useState, useEffect} from 'react';
+import {useContext, useState, useEffect, useMemo, useCallback} from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -19,24 +19,29 @@ import {FavoritesContext} from '../../context/favoritesContext';
 
 export default HeaderRightComponent = ({id}) => {
   const [showIcon, setShowIcon] = useState(isFavorite);
+  const [trueStarImage, setTrueStarImage] = useState(null);
+  const [falseStarImage, setFalseStarImage] = useState(null);
+
   const {favorites, toggleFavorite} = useContext(FavoritesContext);
-  const isFavorite = favorites.find(favorite => favorite.id === id)?.isFavorite;
+
+  const isFavorite = useCallback(() => {
+    return favorites.find(favorite => favorite.id === id)?.isFavorite;
+  }, [favorites, id]);
 
   const pixelRatio = PixelRatio.get();
 
-  let trueStarImage;
-  let falseStarImage;
-
-  if (pixelRatio <= 1.5) {
-    trueStarImage = starSmallTrue;
-    falseStarImage = starSmallFalse;
-  } else if (pixelRatio <= 2.5) {
-    trueStarImage = starMedTrue;
-    falseStarImage = starMedFalse;
-  } else {
-    trueStarImage = starBigTrue;
-    falseStarImage = starBigFalse;
-  }
+  useMemo(() => {
+    if (pixelRatio <= 1.5) {
+      setTrueStarImage(starSmallTrue);
+      setFalseStarImage(starSmallFalse);
+    } else if (pixelRatio <= 2.5) {
+      setTrueStarImage(starMedTrue);
+      setFalseStarImage(starMedFalse);
+    } else {
+      setTrueStarImage(starBigTrue);
+      setFalseStarImage(starBigFalse);
+    }
+  }, [pixelRatio]);
 
   const FavoriteStar = () => {
     return (

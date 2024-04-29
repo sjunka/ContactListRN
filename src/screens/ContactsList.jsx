@@ -1,7 +1,9 @@
 import React from 'react';
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext, useMemo} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, SectionList, StyleSheet} from 'react-native';
+
+import {Colors} from '../utils/assets/colors';
 
 import SectionListHeader from '../components/SectionListHeader';
 import SectionListItem from '../components/SectionListItem';
@@ -32,13 +34,17 @@ export default function ContactsList({navigation}) {
     }
   }, [favorites]);
 
-  const favoritesContacts = contactsMutable
-    .filter(item => item.isFavorite)
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const favoritesContacts = useMemo(() => {
+    return contactsMutable
+      .filter(item => item.isFavorite)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [contactsMutable]);
 
-  const nonFavoritesContacts = contactsMutable
-    .filter(item => !item.isFavorite)
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const nonFavoritesContacts = useMemo(() => {
+    return contactsMutable
+      .filter(item => !item.isFavorite)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [contactsMutable]);
 
   const ContactListData = [
     {
@@ -84,15 +90,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
-    backgroundColor: '#F8F8F8',
+    backgroundColor: Colors.White.color,
   },
   container: {
     flex: 1,
     flexDirection: 'column',
     height: '100%',
   },
-
-  emoji: {
+  text: {
     fontSize: 24,
+    color: Colors.Black.color,
   },
 });
