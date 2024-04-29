@@ -43,12 +43,7 @@ const App = () => {
               headerTitleStyle: {
                 fontWeight: 'bold',
               },
-              headerRight: () => (
-                <HeaderRigth
-                  id={route?.params?.item?.id}
-                  isFavorite={route?.params?.item?.isFavorite}
-                />
-              ),
+              headerRight: () => <HeaderRigth id={route?.params?.item?.id} />,
             })}
             component={ContactDetail}
           />

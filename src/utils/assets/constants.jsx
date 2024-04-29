@@ -13,6 +13,8 @@ export const ADDRESS = 'address';
 export const BIRTHDATE = 'birthdate';
 export const EMAIL = 'email';
 
+export const LOADING = 'Loading...';
+
 export const starSmallTrue = require('../images/FavoriteStar(True)/FavoriteTrue.png');
 export const starMedTrue = require('../images/FavoriteStar(True)/FavoriteTrue2x.png');
 export const starBigTrue = require('../images/FavoriteStar(True)/FavoriteTrue3x.png');

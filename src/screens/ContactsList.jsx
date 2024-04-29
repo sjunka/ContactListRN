@@ -3,19 +3,19 @@ import {useState, useEffect, useContext, useMemo} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, SectionList, StyleSheet} from 'react-native';
 
-import {Colors} from '../utils/assets/colors';
-
 import SectionListHeader from '../components/SectionListHeader';
 import SectionListItem from '../components/SectionListItem';
-import useFetchURL from '../hooks/useFetchURL';
 
+import useFetchURL from '../hooks/useFetchURL';
 import {FavoritesContext} from '../context/favoritesContext';
 
 import {
   url,
   FAVORITES_CONTACTS,
   NON_FAVORITES_CONTACTS,
+  LOADING,
 } from '../utils/assets/constants';
+import {Colors} from '../utils/assets/colors';
 
 export default function ContactsList({navigation}) {
   const {data, loading} = useFetchURL(url);
@@ -67,7 +67,7 @@ export default function ContactsList({navigation}) {
   if (loading) {
     return (
       <SafeAreaView style={styles.loaderContainer}>
-        <Text style={styles.text}>Loading Contacts...</Text>
+        <Text style={styles.text}>{LOADING}</Text>
       </SafeAreaView>
     );
   }
@@ -76,7 +76,7 @@ export default function ContactsList({navigation}) {
     <SafeAreaView style={styles.container}>
       <SectionList
         sections={ContactListData}
-        keyExtractor={(item, index) => item + index}
+        keyExtractor={item => item.id}
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
       />
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   text: {
-    fontSize: 24,
+    fontSize: 28,
     color: Colors.Black.color,
   },
 });
