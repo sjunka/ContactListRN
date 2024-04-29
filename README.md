@@ -44,7 +44,8 @@ Linkedin [@sjunka](https://www.linkedin.com/in/sjunka/)
 This project is licensed under the [MIT] License - see the LICENSE.md file for details
 
 ## Video
-[contactListRN.webm](https://github.com/sjunka/ContactListRN/assets/12448595/fb1ebb10-3beb-4ae4-8bdb-bc31d0a32262)
+[contactList.webm](https://github.com/sjunka/ContactListRN/assets/12448595/13edbf04-68d2-42bb-a444-18df3139e409)
+
 
 ## Images
 ![Screenshot_1714346656](https://github.com/sjunka/ContactListRN/assets/12448595/2740c55b-483a-43e5-9042-e587dff397c4)
